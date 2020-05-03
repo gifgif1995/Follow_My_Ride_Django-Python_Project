@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <section id="cover" class="min-vh-100">
+        <div id="cover-caption">
+            <div class="container">
+                <div class="row text-white">
+                    <div class="col-lg-6 mx-auto text-center form p-4 shadow">
+                        <h2 class=" py-2 display-3 m-4">Follow My Ride</h2>
+                        <h2 class="py-2 display-4 m-4">Login</h2>
+                        <div class="px-2">
+                            <form action="/login" class="justify-content-center" method="POST">
+                                {% if messages %}
+                                <p class="messages">
+                                    {% for message in messages %}
+                                    <p {% if message.tags %} class="{{ message.tags }} text-warning" {% endif %}>{{ message }}</p>
+                                    {% endfor %}
+                                </p>
+                                {% endif %}
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label class="sr-only">Email</label>
+                                    <input name="email" type="text" class="form-control" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Password</label>
+                                    <input name="password" type="password" id="password" class="form-control" placeholder="Password">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg m-4">Login!</button>
+                            </form>
+                            <h4 class="m-4"><a class="text-info" href="/index_register">Don't have an account? Register!</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

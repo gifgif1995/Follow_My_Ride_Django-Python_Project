@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Rides</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-secondary">
+    <div class="container bg-light shadow">
+        <header class="mt-2 bg-white">
+            <a href="/logout" class="btn btn-outline-danger mt-2" style="float: right;">Logout</a>
+            <a href="/main_app/my_account/{{user.id}}/" class="btn btn-outline-primary mt-2" style="float: right;">My
+                Account</a>
+            <img src="{% static '/img/fmr_logo.png' %}" alt="fmr_logo" style="width: 150px;" />
+        </header>
+        <h3 class="text-center">Add Rides</h3>
+        <div class="card">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/main_app/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/main_app/follow_rides/{{user.id}}/">Follow Rides</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/main_app/ride_blog/">Ride Blog</a>
+                </li>
+            </ul>
+        </div>
+    
+    <div class="mt-4 container">
+        <div class="row text-center">
+            <div class="col card" style="height: 500px;">
+                <a href="/main_app/home"><h3 class="text-center">My Rides</h3></a>
+                <p>Mustang</p>
+                <p>Charger</p>
+                <p>911</p>
+                <p>Corvette</p>
+            </div>
+            <div class="col-6 card text-center">
+                <h3 class="m-4">About my Ride</h3>
+                <form action="/main_app/add_rides/{{user.id}}/">
+                    <p>Ride:</p>
+                    <p>Nickname:</p>
+                    <p>Etc:</p>
+                    <p>Etc:</p>
+                    <p>Description:</p>
+                </form>
+
+                <div class="justify-content-bottom" style="margin-bottom: auto; margin-top: auto;">
+
+                </div>
+            </div>
+            <div class="col card">
+                <h3>Upload Pictures</h3>
+                <div class="row text-center">
+                    <a type="button" class="btn col m-1 img-thumbnail mx-auto"><img
+                            src="{% static '/img/mustang2.png' %}" onclick="showimg()"
+                            style=" max-width: 100px; max-height: 100px;"></a>
+                    <a type="button" class="btn col m-1 img-thumbnail mx-auto"><img
+                            src="{% static '/img/mustang3.png' %}" onclick="showimg2()"
+                            style=" max-width: 100px; max-height: 100px;"></a>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

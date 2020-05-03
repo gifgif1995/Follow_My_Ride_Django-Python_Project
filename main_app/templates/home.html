@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+    <script>
+        function showimg() {
+            document.getElementById("show_image").src = "{% static '/img/mustang2.png' %}";
+        }
+        function showimg2() {
+            document.getElementById("show_image").src = "{% static '/img/mustang3.png' %}";
+        }
+        function showimg3() {
+            document.getElementById("show_image").src = "{% static '/img/mustang4.png' %}";
+        }
+        function showimg4() {
+            document.getElementById("show_image").src = "{% static '/img/mustang5.png' %}";
+        }
+        function showimg5() {
+            document.getElementById("show_image").src = "{% static '/img/mustang1.png' %}";
+        }
+    </script>
+
+</head>
+
+<body class="bg-secondary">
+    <div class="container bg-light shadow">
+        <header class="mt-2 bg-white">
+            <a href="/logout" class="btn btn-outline-danger mt-2" style="float: right;">Logout</a>
+            <a href="/main_app/my_account/{{user.id}}/" class="btn btn-outline-primary mt-2" style="float: right;">My Account</a>
+            <img src="{% static '/img/fmr_logo.png' %}" alt="fmr_logo" style="width: 150px;" />
+        </header>
+        <h3 class="text-center">Welcome {{user.first_name}}!</h3>
+        <div class="card">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/main_app/add_rides/{{user.id}}/">Add Rides</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/main_app/follow_rides/{{user.id}}/">Follow Rides</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/main_app/ride_blog/">Ride Blog</a>
+                </li>
+            </ul>
+        </div>
+        <div class="mt-4 container">
+        <div class="row text-center">
+            <div class="col card" style="height: 500px;">
+                <h3 class="text-center">My Rides</h3>
+                <p>Mustang</p>
+                <p>Charger</p>
+                <p>911</p>
+                <p>Corvette</p>
+                <a href="#### jinja will go here for current user's vehicles ###"></a>
+            </div>
+            <div class="col-6 card text-center">
+                <h3 class="m-4"> Mustang Sally </h3>
+                <picture>
+                    <img id="show_image" class="img-fluid img-thumbnail align-center"
+                        src="{% static '/img/mustang1.png' %}" style=" max-width: 400px;">
+                </picture>
+                <div class="justify-content-bottom" style="margin-bottom: auto; margin-top: auto;">
+                    <p> This was my first car and I still have it to this day. This car has a beautiful red color
+                        to it and will always be a great and fast car to drive </p>
+                </div>
+            </div>
+            <div class="col card">
+                <h3>Additional Pictures</h3>
+                <div class="row text-center">
+                    <a type="button" class="btn col m-1 img-thumbnail mx-auto"><img
+                            src="{% static '/img/mustang2.png' %}" onclick="showimg()"
+                            style=" max-width: 100px; max-height: 100px;"></a>
+                    <a type="button" class="btn col m-1 img-thumbnail mx-auto"><img
+                            src="{% static '/img/mustang3.png' %}" onclick="showimg2()"
+                            style=" max-width: 100px; max-height: 100px;"></a>
+                </div>
+                <div class="row text-center">
+                    <a type="button" class="btn col m-1 img-thumbnail mx-auto"><img
+                            src="{% static '/img/mustang4.png' %}" onclick="showimg3()"
+                            style=" max-width: 100px; max-height: 100px;"></a>
+                    <a type="button" class="btn col m-1 img-thumbnail mx-auto"><img
+                            src="{% static '/img/mustang5.png' %}" onclick="showimg4()"
+                            style=" max-width: 100px; max-height: 100px;"></a>
+                </div>
+                <div class="row text-center">
+                    <a type="button" class="btn col m-1 img-thumbnail mx-auto"><img
+                            src="{% static '/img/mustang1.png' %}" onclick="showimg5()"
+                            style=" max-width: 100px; max-height: 100px;"></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <h3>Rent This Ride!</h3>
+                <a class="m-1 mx-auto" href="https://turo.com/" target="_blank"><img src="{% static '/img/turo.png' %}"
+                        style=" max-width: 100px; max-height: 50px;" alt="turo"></a>
+            </div>
+            <div class="col-6">
+                <form action="/main_app/home_message" method="POST">
+                    {% csrf_token %}
+                    <textarea class="form-control" type="text" name="message" placeholder="Click here and start typing!"
+                        style="width: 450px; height: 100px"></textarea>
+                    <p><input type="submit" class="btn btn-primary justify-content-end" value="Post It"></p>
+                </form>
+                <div class="container shadow rounded bg-light">
+                    {% for message in show_all_messages%}
+                    <div class="row justify-content-center"></div>
+                    <div class="mt-4 border">
+                        {% if message.user_id == user.id %}
+                        <a style="float: right;" class="btn btn-danger" href="/main_app/delete_message/{{message.id}}">Delete Post</a>
+                        {% endif %}
+                        {{message.user.first_name}} {{message.user.last_name}} {{message.updated_at}}
+                        <p>{{message.message}}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col text-center">
+                <h3>My Social Media!</h3>
+                <a class="m-1 mx-auto" href="https://www.instagram.com/ryan_giffin/" target="_blank"><img
+                        src="{% static '/img/instagram.png' %}" style=" max-width: 50px; max-height: 50px;"
+                        alt="instagram"></a>
+                <a class="m-1 mx-auto" href="https://www.facebook.com" target="_blank"><img
+                        src="{% static '/img/facebook.jpg' %}" style=" max-width: 75px; max-height: 75px;"
+                        alt="facebook"></a>
+                <a class="m-1 mx-auto" href="https://twitter.com/explore" target="_blank"><img
+                        src="{% static '/img/twitter.png' %}" style=" max-width: 50px; max-height: 50px;"
+                        alt="twitter"></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

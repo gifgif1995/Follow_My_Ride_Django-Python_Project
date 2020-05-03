@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <section id="cover2" class="min-vh-100">
+        <div id="cover-caption">
+            <div class="container">
+                <div class="row text-white">
+                    <div class="col-lg-6 mx-auto text-center form p-4 shadow">
+                        <h4 class="py-2 display-3 m-1">Follow My Ride</h4>
+                        <h2 class="py-2 display-4 m-1">Register</h2>
+                        <div class="px-2">
+                            <form action="/register" class="justify-content-center" method="POST">
+                                {% if messages %}
+                                <p class="messages">
+                                    {% for message in messages %}
+                                    <p {% if message.tags %} class="{{ message.tags }} text-warning" {% endif %}>{{ message }}</p>
+                                    {% endfor %}
+                                </p>
+                                {% endif %}
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label class="sr-only">First Name</label>
+                                    <input name="first_name" type="text" class="form-control" placeholder="First Name">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Last Name</label>
+                                    <input name="last_name" type="text" class="form-control" placeholder="Last Name">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Username</label>
+                                    <input name="username" type="text" class="form-control" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Email</label>
+                                    <input name="email" type="text" class="form-control" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Password</label>
+                                    <input name="password" type="password" id="password" class="form-control" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only">Confirm Password</label>
+                                    <input name="confirm_password" type="password" id="password" class="form-control" placeholder="Confirm Password">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg m-4">Register!</button>
+                            </form>
+                            <h4 class="m-4"><a class="text-info" href="/">Already have an account? Sign in!</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

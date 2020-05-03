@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Rides</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="bg-secondary">
+    <div class="container bg-light shadow">
+        <header class="mt-2 bg-white">
+            <a href="/logout" class="btn btn-outline-danger mt-2" style="float: right;">Logout</a>
+            <a href="/main_app/my_account/{{user.id}}/" class="btn btn-outline-primary mt-2" style="float: right;">My
+                Account</a>
+            <img src="{% static '/img/fmr_logo.png' %}" alt="fmr_logo" style="width: 150px;" />
+        </header>
+        <h3 class="text-center">Follow Rides</h3>
+        <div class="card">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/main_app/add_rides/{{user.id}}/">Add Rides</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/main_app/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/main_app/ride_blog/">Ride Blog</a>
+                </li>
+            </ul>
+        </div>
+    
+    <div class="container mt-4">
+        <div class="row text-center">
+            <div class="m-1 col card" style="height: 250px; overflow: scroll;">
+                <h3 class="text-center"><a href="/main_app/home">{{user.first_name}}'s Rides</a></h3>
+                <div class="row text-center">
+                    <a class="btn col m-1 img-thumbnail mx-auto"><img src="{% static '/img/mustang1.png' %}"
+                            style=" max-width: 100px; max-height: 100px;"></a>
+                    <a class="btn col m-1 img-thumbnail mx-auto"><img src="{% static '/img/mustang2.png' %}"
+                            style=" max-width: 100px; max-height: 100px;"></a>
+                </div>
+                <div class="row text-center">
+                    <a class="btn col m-1 img-thumbnail mx-auto"><img src="{% static '/img/mustang3.png' %}"
+                            style=" max-width: 100px; max-height: 100px;"></a>
+                    <a class="btn col m-1 img-thumbnail mx-auto"><img src="{% static '/img/mustang4.png' %}"
+                            style=" max-width: 100px; max-height: 100px;"></a>
+                </div>
+                <div class="row text-center">
+                    <a class="btn col m-1 img-thumbnail mx-auto"><img src="{% static '/img/mustang5.png' %}"
+                            style=" max-width: 100px; max-height: 100px;"></a>
+                </div>
+            </div>
+            <div class="m-1 col card" style="height: 250px;">
+                <h3 class="text-center">My Rides</h3>
+            </div>
+            <div class="m-1 col card" style="height: 250px;">
+                <h3 class="text-center">My Rides</h3>
+            </div>
+            <div class="m-1 col card" style="height: 250px;">
+                <h3 class="text-center">My Rides</h3>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="m-1 col card" style="height: 250px;">
+                <h3 class="text-center">My Rides</h3>
+            </div>
+            <div class="m-1 col card" style="height: 250px;">
+                <h3 class="text-center">My Rides</h3>
+            </div>
+            <div class="m-1 col card" style="height: 250px;">
+                <h3 class="text-center">My Rides</h3>
+            </div>
+            <div class="m-1 col card" style="height: 250px;">
+                <h3 class="text-center">My Rides</h3>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
